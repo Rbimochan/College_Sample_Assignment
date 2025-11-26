@@ -1,0 +1,139 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+
+% Page geometry
+\geometry{margin=1in}
+
+% Title information
+\title{Sample Findings and Structured Report Excerpts: \\ Modeling Power Plant Energy Output}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction and Objectives}
+
+This project aimed to identify the optimal nonlinear regression model from five candidates to predict CCPP energy output using environmental input variables. The data comprised 9,568 full-load operating records.
+
+\section{Task 1: Preliminary Data Analysis Findings}
+
+Preliminary data analysis was performed using visualization techniques to comprehend the underlying process and relationships in the dataset.
+
+\subsection{Variables and Structure}
+
+The analysis involved four independent variables (inputs) and one dependent variable (output):
+
+\begin{itemize}
+    \item \textbf{Input Variables:} Temperature ($\mathbf{x_1}$), Pressure ($\mathbf{x_3}$), Exhaust Vacuum ($\mathbf{x_4}$), and Relative Humidity ($\mathbf{x_5}$).
+    \item \textbf{Output Variable:} Electrical Energy Output ($\mathbf{x_2}$ or $\mathbf{y}$).
+\end{itemize}
+
+\subsection{Distribution and Noise}
+
+\begin{itemize}
+    \item \textbf{Input Signals:} The input signal data was found to have less noise and fewer spikes.
+    \item \textbf{Output Distribution:} The Energy Output ($\mathbf{x_2}$) distribution was observed to be slightly right-skewed. Most values clustered between 430 MW and 470 MW, with a mean around 454 MW.
+    \item \textbf{Time Series:} Time series plots confirmed that the provided data contained \textbf{no abrupt spikes or outliers}, suggesting the data had no inaccuracies.
+\end{itemize}
+
+\subsection{Correlation Analysis}
+
+Correlation analysis identified the strength and nature of the relationships between input variables and the energy output.
+
+\begin{table}[H]
+\centering
+\caption{Correlation Analysis Results}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Input Variable} & \textbf{Correlation with Energy Output ($\mathbf{y}$)} & \textbf{Nature of Relationship} \\
+\midrule
+Temperature ($\mathbf{x_1}$) & Strong Negative ($\mathbf{r \approx -0.95}$) & Strongest monotonic relation: Energy \\
+ & & decreases as temperature increases. \\
+Pressure ($\mathbf{x_3}$) & High Negative ($\mathbf{r \approx -0.87 \text{ to } -0.88}$) & High negative correlation. \\
+Relative Humidity ($\mathbf{x_5}$) & Moderate Positive ($\mathbf{r \approx 0.52}$) & Moderate influence. \\
+Exhaust Vacuum ($\mathbf{x_4}$) & Weaker Positive ($\mathbf{r \approx 0.39}$) & Positive trend, though more dispersed \\
+ & & and non-linear. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Multicollinearity:} High positive correlation between Temperature ($\mathbf{x_1}$) and Pressure ($\mathbf{x_3}$) ($\mathbf{r = 0.84}$) was noted, suggesting a potential for multicollinearity.
+
+\section{Task 2: Regression Model Selection (Model 5 Selection)}
+
+The objective of Task 2 was to estimate parameters for five candidate nonlinear models using the Least Squares (OLS) method and select the ``best'' model based on statistical criteria.
+
+\subsection{Comparative Performance Metrics}
+
+Statistical evaluation using RSS, Log-likelihood, AIC, and BIC consistently demonstrated that Model 5 was the superior choice.
+
+\begin{table}[H]
+\centering
+\caption{Model 5 Performance Metrics}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Metric} & \textbf{Model 5 Value} & \textbf{Interpretation (Model 5)} \\
+\midrule
+RSS (Residual Sum & $\mathbf{198{,}462.46}$ (Lowest) & Lowest RSS indicates best accuracy \\
+of Squares) & & and smallest total squared error. \\
+Log-likelihood (LL) & $\mathbf{-27{,}982.45}$ (Highest/ & Highest likelihood reinforces its \\
+ & Least Negative) & superior fit to the observed data. \\
+AIC (Akaike Information & $\mathbf{55{,}972.91}$ (Lowest) & Lowest AIC indicates the best trade-off \\
+Criterion) & & between accuracy and parsimony. \\
+BIC (Bayesian Information & $\mathbf{56{,}001.55}$ (Lowest) & Lowest BIC supports Model 5 as the \\
+Criterion) & & best model choice for prediction. \\
+$R^2$ (Coefficient of & $\mathbf{0.9282}$ (Highest) & Explains the largest proportion of \\
+Determination) & & variance in the output (over 92\%). \\
+RMSE (Root Mean & $\mathbf{4.5642}$ (Lowest) & Lowest prediction error, confirming \\
+Squared Error) & & it is the \textbf{most accurate model}. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Model Selection Rationale (Task 2.6)}
+
+Model 5 was selected as the most suitable regression model because it consistently yielded the best results across all key metrics. It resulted in the lowest AIC and BIC, demonstrating the ideal balance between model fit and complexity. Furthermore, Model 5 exhibited the lowest RSS and variance, predicting outcomes more accurately with minimal errors. Residual analysis showed that its residuals were more symmetrically centered around zero and had the lowest standard deviation (6.18 in one project context), making it statistically reliable.
+
+\subsection{Validation on Test Data (Task 2.7)}
+
+To ensure the model's generalization ability, the dataset was split into 70\% training and 30\% testing subsets.
+
+\begin{itemize}
+    \item \textbf{Prediction Accuracy:} Metrics confirmed Model 5's strong predictive power on the test data.
+    \item \textbf{Confidence Intervals:} The calculated 95\% confidence intervals were found to be very narrow. This narrowness indicates low prediction uncertainty and high model reliability, showing that the model performs well on unseen data.
+\end{itemize}
+
+\section{Task 3: Approximate Bayesian Computation (ABC) Findings}
+
+The rejection ABC method was applied to Model 5 to compute the posterior distribution of key parameters, quantifying their uncertainty.
+
+\subsection{Parameter Selection}
+
+The two parameters with the largest absolute values from the OLS estimation were selected for analysis. In the CCPP analysis, this often focused on parameters related to Exhaust Vacuum ($\theta_1$) and squared Temperature ($\theta_2$).
+
+\subsection{Posterior Distribution Results}
+
+\begin{itemize}
+    \item \textbf{LS Support:} The ABC analysis confirmed the reliability of the original Least Squares (LS) parameter estimates. The posterior distributions for the main parameters were centered around the LS solutions.
+    \item \textbf{Uncertainty in $\theta_1$ (Exhaust Vacuum):} The posterior distribution for $\theta_1$ (Exhaust Vacuum) was tightly constrained (narrow), which indicates that this parameter is reliably identified by the data, and there is a high confidence in its estimate.
+    \item \textbf{Uncertainty in $\theta_2$ (Squared Temperature):} Conversely, the posterior distribution for $\theta_2$ (Squared Temperature) was weakly identified (wide and flat), revealing high uncertainty in its precise estimate.
+    \item \textbf{Joint Posterior:} Analysis of the joint posterior showed that accepted samples for $\theta_1$ formed a narrow vertical band, while the effect of $\theta_2$ was much less certain. This suggests the model's predictive power is mainly driven by exhaust vacuum ($\mathbf{x_4}$), while the effect of squared temperature ($\mathbf{x_1^2}$) should be interpreted with caution due to high uncertainty.
+\end{itemize}
+
+\section{Summary Analogy}
+
+Model 5, selected through rigorous evaluation, acted as the most precisely engineered thermometer (the model) for the power plant. Task 2 confirmed it was the sharpest, most accurate tool (lowest AIC/BIC/RSS). Task 2.7 validation showed that when applied to new, unseen weather data, its readings (predictions) were reliably accurate with a very tight margin of error (narrow confidence intervals). Finally, Task 3 (ABC) examined the engine components themselves, revealing that while the vacuum component ($\theta_1$) was perfectly calibrated, the temperature component ($\theta_2$) had a wider range of possible correct settings, indicating that the model relies more heavily and certainly on the vacuum measurement for stability.
+
+\end{document}
