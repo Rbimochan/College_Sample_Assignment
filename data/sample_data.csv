@@ -1,0 +1,21 @@
+student_id,name,age,gender,course,gpa,attendance,study_hours,exam_score
+1,Alice Johnson,20,Female,Data Science,3.8,95,25,88
+2,Bob Smith,21,Male,Statistics,3.5,88,20,82
+3,Carol Williams,19,Female,Data Science,3.9,97,30,92
+4,David Brown,22,Male,Machine Learning,3.2,85,18,78
+5,Emily Davis,20,Female,Statistics,3.7,92,22,85
+6,Frank Miller,21,Male,Data Science,3.4,80,15,75
+7,Grace Wilson,19,Female,Machine Learning,3.6,90,24,84
+8,Henry Taylor,22,Male,Statistics,3.3,82,16,76
+9,Ivy Anderson,20,Female,Data Science,3.8,94,28,90
+10,Jack Thomas,21,Male,Machine Learning,3.1,78,14,72
+11,Karen Jackson,19,Female,Statistics,3.9,96,29,91
+12,Leo White,22,Male,Data Science,3.5,86,21,83
+13,Mia Harris,20,Female,Machine Learning,3.7,91,23,86
+14,Noah Martin,21,Male,Statistics,3.4,84,19,79
+15,Olivia Garcia,19,Female,Data Science,3.8,93,26,89
+16,Peter Martinez,22,Male,Machine Learning,3.2,79,17,74
+17,Quinn Robinson,20,Female,Statistics,3.6,89,22,84
+18,Ryan Clark,21,Male,Data Science,3.5,87,20,81
+19,Sophia Lewis,19,Female,Machine Learning,3.9,95,27,93
+20,Thomas Lee,22,Male,Statistics,3.3,81,16,77
