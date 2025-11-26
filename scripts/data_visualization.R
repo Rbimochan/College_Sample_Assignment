@@ -108,7 +108,7 @@ performance_plot <- ggplot(course_performance, aes(x = course, y = value, fill =
        y = "Value",
        fill = "Metric") +
   scale_fill_manual(values = c("avg_gpa" = "#3498db", "avg_exam_score" = "#e74c3c"),
-                    labels = c("GPA (scaled)", "Exam Score")) +
+                    labels = c("Average GPA", "Average Exam Score")) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         axis.text.x = element_text(angle = 45, hjust = 1))

@@ -10,8 +10,7 @@ library(tidyverse)
 library(ggplot2)
 library(corrplot)
 
-# Set working directory and load data
-# setwd("path/to/project")
+# Load data
 data <- read.csv("../data/sample_data.csv")
 
 # Display basic information about the dataset
